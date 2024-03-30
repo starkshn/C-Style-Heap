@@ -1,6 +1,8 @@
 #pragma once
 
 #define MAX 100
+#define EMPTY '\0'
+
 typedef char DATA;
 typedef int (*PriorityComp)(DATA d1, DATA d2); // 함수 포인터
 

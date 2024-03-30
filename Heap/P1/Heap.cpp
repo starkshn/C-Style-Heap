@@ -49,7 +49,7 @@ void HeapInit(HEAP* pHeap, PriorityComp comp)
 	pHeap->comp = comp;
 	for (size_t i = 0; i < MAX; i++)
 	{
-		pHeap->heapArr[i] = ' ';
+		pHeap->heapArr[i] = EMPTY;
 	}
 }
 
@@ -69,6 +69,10 @@ void HeapInsert(HEAP* pHeap, DATA data)
 	// 가장 밑에서 부터 부모와 맞짱을 뜨며 올라간다.
 	while (idx != 0)
 	{
+		// max heap인 경우 root 예외처리
+		if (pHeap->heapArr[GetParentIdx(idx)] == EMPTY)
+			break;
+
 		if (pHeap->comp(data, pHeap->heapArr[GetParentIdx(idx)]) >= 0)
 		{
 			pHeap->heapArr[idx] = pHeap->heapArr[GetParentIdx(idx)];
